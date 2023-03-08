@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "1056414853854",
+    "project_id": "foodpanda-1b9de",
+    "storage_bucket": "foodpanda-1b9de.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1056414853854:android:247fa02bff9c474066704f",
+        "android_client_info": {
+          "package_name": "com.wellrich.ridersapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1056414853854-gljq27hserlcan1vcv6n9lmbfusamuk3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUBfMq-6Le4vgry-J1dKZuQZgET8F34Dk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1056414853854-gljq27hserlcan1vcv6n9lmbfusamuk3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1056414853854:android:219bcb9673dadcaa66704f",
+        "android_client_info": {
+          "package_name": "com.wellrich.sellersapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1056414853854-gljq27hserlcan1vcv6n9lmbfusamuk3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUBfMq-6Le4vgry-J1dKZuQZgET8F34Dk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1056414853854-gljq27hserlcan1vcv6n9lmbfusamuk3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

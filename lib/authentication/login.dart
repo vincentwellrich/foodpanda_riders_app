@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import '../global/global.dart';
-import '../widgets/custom_text_field.dart';
-import '../widgets/error_dialog.dart';
-import '../widgets/loading_dialog.dart';
+import 'package:foodpanda_riders_app/authentication/auth_screen.dart';
+import 'package:foodpanda_riders_app/global/global.dart';
+import 'package:foodpanda_riders_app/mainScreens/home_screen.dart';
+import 'package:foodpanda_riders_app/widgets/custom_text_field.dart';
+import 'package:foodpanda_riders_app/widgets/error_dialog.dart';
+import 'package:foodpanda_riders_app/widgets/loading_dialog.dart';
 
 
 
@@ -35,13 +36,13 @@ class _LoginScreenState extends State<LoginScreen>
     else
     {
       showDialog(
-        context: context,
-        builder: (c)
-        {
-          return const ErrorDialog(
-            message: "Please write email/password.",
-          );
-        }
+          context: context,
+          builder: (c)
+          {
+            return const ErrorDialog(
+              message: "Please write email/password.",
+            );
+          }
       );
     }
   }
@@ -79,10 +80,7 @@ class _LoginScreenState extends State<LoginScreen>
     });
     if(currentUser != null)
     {
-      readDataAndSetDataLocally(currentUser!).then((value){
-        Navigator.pop(context);
-        //Navigator.push(context, MaterialPageRoute(builder: (c)=> const HomeScreen()));
-      });
+      readDataAndSetDataLocally(currentUser!);
     }
   }
 
@@ -92,11 +90,34 @@ class _LoginScreenState extends State<LoginScreen>
         .doc(currentUser.uid)
         .get()
         .then((snapshot) async {
-          await sharedPreferences!.setString("uid", currentUser.uid);
-          await sharedPreferences!.setString("email", snapshot.data()!["sellerEmail"]);
-          await sharedPreferences!.setString("name", snapshot.data()!["sellerName"]);
-          await sharedPreferences!.setString("photoUrl", snapshot.data()!["sellerAvatarUrl"]);
-        });
+      if(snapshot.exists)
+      {
+        await sharedPreferences!.setString("uid", currentUser.uid);
+        await sharedPreferences!.setString("email", snapshot.data()!["riderEmail"]);
+        await sharedPreferences!.setString("name", snapshot.data()!["riderName"]);
+        await sharedPreferences!.setString("photoUrl", snapshot.data()!["riderAvatarUrl"]);
+
+        Navigator.pop(context);
+        Navigator.push(context, MaterialPageRoute(builder: (c)=> const HomeScreen()));
+      }
+      else
+      {
+        firebaseAuth.signOut();
+        Navigator.pop(context);
+        Navigator.push(context, MaterialPageRoute(builder: (c)=> const AuthScreen()));
+
+        showDialog(
+            context: context,
+            builder: (c)
+            {
+              return const ErrorDialog(
+                message: "no record exists.",
+              );
+            }
+        );
+      }
+
+    });
   }
 
   @override
@@ -110,8 +131,8 @@ class _LoginScreenState extends State<LoginScreen>
             child: Padding(
               padding: const EdgeInsets.all(15),
               child: Image.asset(
-                  "images/signup.png",
-                  height: 270,
+                "images/signup.png",
+                height: 270,
               ),
             ),
           ),

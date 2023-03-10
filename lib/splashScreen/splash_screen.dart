@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../authentication/auth_screen.dart';
 import '../global/global.dart';
+import '../mainScreens/home_screen.dart';
 
 
 
@@ -23,12 +24,12 @@ class _MySplashScreenState extends State<MySplashScreen>
   {
     Timer(const Duration(seconds: 1), () async
     {
-      //if seller is loggedin already
+      //if rideris loggedin already
       if(firebaseAuth.currentUser != null)
       {
-       // Navigator.push(context, MaterialPageRoute(builder: (c)=> const HomeScreen()));
+       Navigator.push(context, MaterialPageRoute(builder: (c)=> const HomeScreen()));
       }
-      //if seller is NOT loggedin already
+      //if rider is NOT loggedin already
       else
       {
         Navigator.push(context, MaterialPageRoute(builder: (c)=> const AuthScreen()));
